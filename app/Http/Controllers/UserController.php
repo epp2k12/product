@@ -110,8 +110,8 @@ class UserController extends Controller
         auth()->user()->update(array('avatar'=>$avatar_name));
         return redirect()->back();
 
-        $user = auth()->user();
-        dd($user);
+        // $user = auth()->user();
+        // dd($user);
     }
 
     protected function deleteOldAvatar() {
