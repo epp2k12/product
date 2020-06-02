@@ -97,17 +97,21 @@ class UserController extends Controller
         // return "uploaddeeedddddd";
 
         if($request->hasFile('avatar')) {
-            $avatar_name = $request->avatar->getClientOriginalName();
 
-            $this->deleteOldAvatar();
-
-            $request->avatar->storeAs('images',$avatar_name,'public' );
-            
-            auth()->user()->update(array('avatar'=>$avatar_name));
-            // $user = User::find(1);
-            // dd($user);
+            // $avatar_name = $request->avatar->getClientOriginalName();
+            // $this->deleteOldAvatar();
+            // $request->avatar->storeAs('images',$avatar_name,'public' );
+            // auth()->user()->update(array('avatar'=>$avatar_name));
+               
         }
+        $avatar_name = $request->avatar->getClientOriginalName();
+        $this->deleteOldAvatar();
+        $request->avatar->storeAs('images',$avatar_name,'public' );
+        auth()->user()->update(array('avatar'=>$avatar_name));
         return redirect()->back();
+
+        $user = auth()->user();
+        dd($user);
     }
 
     protected function deleteOldAvatar() {
