@@ -24,6 +24,7 @@
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
+                    <img src=" {{ asset('storage/images/logo/bawingksy_logo.jpg')}}" width="100" alt="Bawignsky Logo" />
                     {{ config('app.name', 'Bawingksy Resto') }}
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
