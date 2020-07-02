@@ -98,7 +98,9 @@ class UserController extends Controller
 
         if ($request->hasFile('avatar')) {
             $avatar_name = $request->avatar->getClientOriginalName();
+
             $this->deleteOldAvatar();
+
             $request->avatar->storeAs('images', $avatar_name, 'public');
             auth()->user()->update(array('avatar' => $avatar_name));
         }
@@ -114,5 +116,9 @@ class UserController extends Controller
         if (auth()->user()->avatar) {
             Storage::delete('/public/images/' . auth()->user()->avatar);
         }
+    }
+
+    public function testing() {
+
     }
 }

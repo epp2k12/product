@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\App;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,3 +29,17 @@ Route::get('profile', function () {
 Route::post('upload_image','UserController@upload_avatar')->name('upload_image');
 
 Auth::routes(); 
+
+Route::get('/test', function() {
+
+    $teams = array("okc","lakers","bulls");
+    session()->put('teams', $teams);
+    session()->push('teams', 'nuggets');
+    // session()->flush();
+    // $value=session()->pull('teams');
+    // dd(session()->all());
+    // dd($value);
+    $environment = App::environment();
+    dd(config('app'));
+
+});
