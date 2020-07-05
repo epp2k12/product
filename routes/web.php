@@ -19,10 +19,7 @@ Route::get('/', 'HomeController@index')->name('home');
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-
-
 Route::get('profile', function () {
-    //
     return view('profile');
 })->name('profile');
 
@@ -43,3 +40,11 @@ Route::get('/test', function() {
     dd(config('app'));
 
 });
+
+Route::resource('product','ProductController');
+Route::post('upload_product_image','ProductController@upload_image')->name('upload_product_image');
+
+
+
+
+Route::get('prefix', 'ProductController@add_prefix');

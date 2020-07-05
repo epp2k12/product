@@ -1,0 +1,27 @@
+.show_product_detail {
+    margin: 10px;
+  }
+
+.show_product_detail > dd {
+    margin-bottom: 16px;
+
+    border:1px solid grey;
+    border-radius: 6px;
+    padding:5px
+    
+}
+
+.show_product_detail > dt {
+    font-weight: normal;
+}
+
+
+.product_image {
+    margin: 6px;
+}
+
+
+.my_buttons {
+    margin: 0px 10px;
+    min-width: 200px;
+}
