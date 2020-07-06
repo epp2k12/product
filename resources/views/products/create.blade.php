@@ -17,35 +17,34 @@
                         </ul>
                     </div>
                     @endif
-                    <!--
+
                     <form method="POST" action=" {{ route('upload_product_image') }}" enctype="multipart/form-data">
                     @csrf 
                     <div class="row">
                         <div class="col-md-3">
 
-                        @if(Session::has('image_name')) 
-                        <img src="{{ asset('storage/images/products/temp/' . session('image_name') ) }}" alt="product" width="130" />
-                        <?php // echo "<script>put_image_name_value('" . session('image_name') . "');</script>"; 
-                        ?>
-                        @else 
-                        <img src="{{ asset('storage/images/products/product.jpeg' ) }}" alt="product" width="130" />
-                        @endif
-                            
+                        <div class="product_image_preview_container" id="product_image_preview_container">
+                            <img onmouseover="" src="{{ asset('storage/images/products/product.jpeg' ) }}" alt="product" class="product_image_preview" name="product_image_preview" id="product_image_preview" width="130" />
+                        </div>
+
                         </div>
                         <div class="form-group col-md-9">
                             <div class="col-md-6">
-                                <label for="product">Choose a product image:</label>
-                                <input type="file" id="product_image" name="product_image" accept="image/png, image/jpeg, image/jpg">
 
-                                <button type="submit" class="btn btn-primary" style="margin:10px 0" onclick="test()">
+
+                                <label for="product_image">Choose a product image:</label>
+                                <input type="file" class="product_image_file" id="prod_img_file" name="prod_img_file" accept="image/png, image/jpeg, image/jpg">
+
+                    <!--            <button type="submit" class="btn btn-primary" style="margin:10px 0" onclick="test()">
                                     {{ __('Upload Image') }}
-                                </button>
+                                </button>       
+                    --> 
+
                             </div>
                         </div>
                     </div>
                     </form>
-                    <h1> The product image name : {{ session('image_name') }} </h1>
-        -->
+
                     <form method="POST" action=" {{ route('product.store') }}">
                         @csrf
                         <!-- cross site request forgery -->
@@ -68,7 +67,7 @@
                                 <input type="text" class="form-control" id="name" name="name" placeholder="Product Name" required>
                             </div>
                         </div>
-                        <!--    
+                <!--    
                         <div class="form-group row">
                             <label for="dish_type" class="col-sm-2 col-form-label">Dish Type</label>
                             <div class="col-sm-10">
@@ -91,7 +90,7 @@
                         </div>
 
                         <div class="form-group row">
-                            <div class="col-sm-10 offset-sm-2">
+                            <div class="col-sm-10 offset-sm-2" id="testID">
                                 <button type="submit" class="btn btn-primary">Add Product</button>
                             </div>
                         </div>
@@ -102,7 +101,3 @@
     </div>
 </div>
 @endsection
-
-<script>
-
-</script>

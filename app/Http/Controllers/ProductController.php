@@ -109,6 +109,7 @@ class ProductController extends Controller
      */
     public function upload_image(Request $request)
     {
+
         // return view('profile');
         // dd($request->avatar->getClientOriginalName());
         // $request->file('avatar')->store('images','public');

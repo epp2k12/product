@@ -25,3 +25,8 @@
     margin: 0px 10px;
     min-width: 200px;
 }
+
+.product_image_preview_container {
+    border:2px solid grey;
+    padding:6px;
+}
