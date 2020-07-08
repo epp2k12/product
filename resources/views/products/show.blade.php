@@ -39,21 +39,27 @@
 
                 </dl>
 
-                <div class="d-flex justify-content-end">
-                
-                <form method="GET" action="{{ route('product.edit', $product->id ) }}" accept-charset="UTF-8">
-                <input class="btn btn-primary btn-edit my_buttons" type="submit" value=" EDIT ">
-                </form>
-
-                <form method="POST" action="{{ route('product.destroy', $product->id ) }}" accept-charset="UTF-8">
-                    @csrf
-                    {{ method_field('DELETE') }}
-                    <input class="btn btn-danger btn-delete my_buttons" onclick="return myFunction()" type="submit" value="DELETE">
-                </form>
+                <div class="container">
+                <div class="row">
+                    <div class="col-sm">
+                    <form method="GET" action="{{ route('product.edit', $product->id ) }}" accept-charset="UTF-8">
+                        <input class="btn btn-primary btn-edit my_buttons" type="submit" value=" EDIT ">
+                    </form>
+                    </div>
+                    <div class="col-sm">
+                    <form method="POST" action="{{ route('product.destroy', $product->id ) }}" accept-charset="UTF-8">
+                        @csrf
+                        {{ method_field('DELETE') }}
+                        <input class="btn btn-danger btn-delete my_buttons" onclick="return myFunction()" type="submit" value="DELETE">
+                    </form>
+                    </div>
+                    <div class="col-sm" style="margin-bottom:4px">
+                        <a class="btn btn-secondary my_buttons" href="{{ url()->previous() }}" role="button" > << BACK </a>
+                    </div>
+                </div>
                 </div>
 
             </div> <!-- card body -->
-
         </div>
     </div>
 </div>

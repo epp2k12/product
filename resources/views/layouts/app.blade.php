@@ -37,7 +37,7 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item">
-                                <a class="nav-link" href="{{ route('login') }}">{{ __('Food Menu') }}</a>
+                                <a class="nav-link" href="{{ route('product.index') }}">{{ __('Food Menu') }}</a>
                             </li>
                     </ul>
 

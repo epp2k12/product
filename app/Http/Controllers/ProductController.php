@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\Product;
 use App\Prefix;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class ProductController extends Controller
 {
@@ -15,7 +16,9 @@ class ProductController extends Controller
     public function index()
     {
         //
-        echo "<h1>HELLO THIS IS INSIDE PRODUCT INDEX</h1>";
+        $products = Product::all();
+        return View('products.index',["products"=>$products]); 
+
     }
 
     /**
@@ -40,15 +43,23 @@ class ProductController extends Controller
         $validatedData = $request->validate([
             'name' => ['required', 'unique:products', 'max:50'],
             'description' => ['required', 'max:255'],
-        ]);
-        //
+         ]);
+
         $product=new Product;
         $product->name=$request->name; 
+        // get image name and store image
+        if ($request->hasFile('prod_img_file')) {
+            $product_image_name = $request->prod_img_file->getClientOriginalName();
+            $name = pathinfo($product_image_name, PATHINFO_FILENAME);
+            $ext = pathinfo($product_image_name, PATHINFO_EXTENSION);
+            $product_image_name_to_store = $name . "_" . time() . ".". $ext;
+            $product->product_image = $product_image_name_to_store;
+            $request->prod_img_file->storeAs('images/products/', $product_image_name_to_store, 'public');
+        }
         $product->description=$request->description;
         if($product->save()) {
             return redirect()->route('product.show',$product);
         };
-        
     }
 
     /**
@@ -74,7 +85,9 @@ class ProductController extends Controller
     public function edit(Product $product)
     {
         //
-        dd($product);
+        // dd($product);
+        // return View('products.edit')->with('product',$product); 
+        return View('products.edit',['product'=>$product]); 
     }
 
     /**
@@ -87,6 +100,12 @@ class ProductController extends Controller
     public function update(Request $request, Product $product)
     {
         //
+        dd($product);
+        $validatedData = $request->validate([
+            'name' => ['required', 'unique:products', 'max:50'],
+            'description' => ['required', 'max:255'],
+         ]);
+
     }
 
     /**
@@ -130,10 +149,10 @@ class ProductController extends Controller
         // dd($user);
     }
 
-    protected function deleteOldImage()
+    protected function deleteOldProductImage($product_image_name)
     {
-        if (auth()->user()->avatar) {
-            Storage::delete('/public/images/' . auth()->user()->avatar);
+        if ($product_image_name !== "product.jpeg") {
+            Storage::delete('/public/images/products/'. $product_image_name);
         }
     }
 
